@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit catalog</title>
+    <style>
+        .form-control{
+            width: 50%;
+            margin-top: 20px;
+            alignment-baseline: center;
+        }
+        .btn-dark{
+            border-left: 6px;
+            margin-left: 500px;
+            margin-top: 50px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<form th:action="@{/app/add}", th:object="${category}" method="post">
+    <div class="col">
+        <div class="col" hidden="hidden">
+            <input th:field="*{id}" class="form-control" placeholder="Name category" aria-label="First name">
+        </div>
+        <div class="col">
+            <input th:field="*{name}" class="form-control" placeholder="Name category" aria-label="First name">
+        </div>
+        <div class="col">
+            <input th:field="*{definition}" class="form-control" placeholder="Definition" aria-label="Last name">
+        </div>
+    </div>
+    <button class="btn-dark" type="submit">Save category</button>
+
+</form>
+
+
+</body>
+</html>
