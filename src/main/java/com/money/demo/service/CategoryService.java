@@ -26,7 +26,7 @@ public class CategoryService {
     public Category getCategoryWithSubcategoriesById(Long id){
         return categoryRepository.findCategoryByIdWithSubcategories(id);
     }
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = false )
     public boolean updateCategories(Category category) throws Exception {
         if (category==null) throw new NullPointerException();
        Category categoryFromBd = categoryRepository.findCategoryByIdWithSubcategories(category.getId());
