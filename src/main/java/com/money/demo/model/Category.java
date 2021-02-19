@@ -33,9 +33,13 @@ public class Category {
     @Transient
     private int finalAmountExpenses;
 
+    public Category(@NotNull @Size(min = 3, message = "name can't be shortly 3 characters") String name, String definition) {
+        this.name = name;
+        this.definition = definition;
+    }
 
-
-
+    public Category() {
+    }
 
     @Override
     public boolean equals(Object o) {

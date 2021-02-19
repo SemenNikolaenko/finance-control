@@ -1,4 +1,4 @@
-package com.money.demo.service;
+package com.money.demo.service.impl;
 
 import com.money.demo.model.Entry;
 import com.money.demo.repository.EntryRepository;
@@ -9,10 +9,10 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class EntryService {
+public class EntryServiceImpl implements EntryService{
     private final EntryRepository entryRepository;
 
-    public EntryService(EntryRepository entryRepository) {
+    public EntryServiceImpl(EntryRepository entryRepository) {
         this.entryRepository = entryRepository;
     }
 

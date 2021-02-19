@@ -2,7 +2,6 @@ package com.money.demo.controller;
 
 import com.money.demo.model.Category;
 import com.money.demo.service.CategoryService;
-import com.money.demo.service.EntryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,24 +16,18 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
-    private final EntryService EntryService;
 
     @Autowired
-    public CategoryController(CategoryService categoryService, EntryService EntryService) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
-        this.EntryService = EntryService;
-    }
-
-    public String simple() {
-        return "test";
     }
 
     @GetMapping("/cat")
     public String showAllCategories(Model model) {
         List<Category> categories = categoryService.findAllCategory();
         for (Category category : categories) {
-            if (category.getFinalAmountExpenses()==0)  category.setFinalAmountExpenses(categoryService.getAllExpensesFromCategoryById(category.getId()));
-            else continue;
+            if (category.getFinalAmountExpenses() == 0)
+                category.setFinalAmountExpenses(categoryService.getAllExpensesFromCategoryById(category.getId()));
         }
         model.addAttribute("categories", categories);
         return "category";
@@ -67,7 +60,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String addCategory(@ModelAttribute("category") Category category) throws Exception {
+    public String addCategory(@ModelAttribute("category") Category category) {
         categoryService.addCategory(category);
         return "redirect:/app/cat";
     }

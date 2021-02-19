@@ -1,10 +1,9 @@
 package com.money.demo.controller;
 
-import com.money.demo.model.Category;
 import com.money.demo.model.Entry;
 import com.money.demo.model.Subcategory;
-import com.money.demo.service.EntryService;
 import com.money.demo.service.SubcategoryService;
+import com.money.demo.service.impl.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +18,7 @@ import java.util.List;
 public class SubcategoryAndEntryController {
     private final SubcategoryService subcategoryService;
     private final EntryService entryService;
-    private Long categoryId = 0l;
+    private Long categoryId = 0L;
     private List<Entry> entryList = new ArrayList<>();
 
     @Autowired
@@ -36,7 +35,6 @@ public class SubcategoryAndEntryController {
         for (Subcategory subcategory : subcategoryList) {
             if (subcategory.getTotalExpenses() == 0)
                 subcategory.setTotalExpenses(subcategoryService.getAllExpensesFromSubcategoryById(subcategory.getId()));
-            else continue;
         }
         if (entryList.size()!=0) model.addAttribute("entryList", entryList) ;
         model.addAttribute("subcategories", subcategoryList);
@@ -75,7 +73,7 @@ public class SubcategoryAndEntryController {
         return "redirect:/sub/" + categoryId;
     }
     @GetMapping("/show/{id}")
-    public String showExpensesEntry(@PathVariable("id")Long id, Model model){
+    public String showExpensesEntry(@PathVariable("id")Long id){
         entryList = entryService.getEntriesBySubcategoryId(id);
         return "redirect:/sub/" + categoryId;
     }
