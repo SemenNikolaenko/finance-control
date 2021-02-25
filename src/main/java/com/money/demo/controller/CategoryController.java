@@ -2,6 +2,7 @@ package com.money.demo.controller;
 
 import com.money.demo.model.Category;
 import com.money.demo.service.CategoryService;
+import com.money.demo.service.impl.CategoryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/app")
-public class CategoryController {
+public class  CategoryController {
 
     private final CategoryService categoryService;
 

@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
-@Service
+@Service("serv")
 public class SubcategoryServiceImpl implements SubcategoryService {
 
     private final SubcategoryRepository subcategoryRepository;
@@ -22,42 +23,45 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
 
-    public Subcategory getSubcategoryWithEntriesById(Long id){
+    public Subcategory getSubcategoryWithEntriesById(Long id) {
         return subcategoryRepository.findSubcategoriesWithEntriesById(id);
     }
 
-    public Subcategory getSubcategory(Long id){
+    public Subcategory getSubcategory(Long id) {
         return subcategoryRepository.getOne(id);
     }
 
     @Transactional(readOnly = false)
-    public boolean updateSubcategory(Subcategory subcategory) throws Exception {
-        if (subcategory==null) throw new NullPointerException();
+    public boolean updateSubcategory(Subcategory subcategory)  {
+        if (subcategory == null || subcategory.getName().equals("")) return false;
         Subcategory subcategoryFromBd = subcategoryRepository.getOne(subcategory.getId());
-        if (!subcategoryFromBd.equals(subcategory)){
+        if (!subcategoryFromBd.equals(subcategory)) {
             subcategoryFromBd.setName(subcategory.getName());
             return true;
-        }
-        else return false;
+        } else return false;
     }
+
     @Transactional(readOnly = false)
-    public boolean addSubcategory(Subcategory subcategory,  Long categoryId){
+    public boolean addSubcategory(Subcategory subcategory, Long categoryId) {
         Category category = subcategoryRepository.findCategoryByID(categoryId);
         subcategory.setCategory(category);
-        if (!subcategoryRepository.save(subcategory).equals(null)) return true;
+        if (subcategoryRepository.save(subcategory).equals(subcategory)) return true;
         else return false;
+
     }
+
     @Transactional(readOnly = false)
-    public boolean deleteSubcategoryById(Long id){
+    public boolean deleteSubcategoryById(Long id) {
         subcategoryRepository.deleteById(id);
-        if (!subcategoryRepository.existsById(id)) return true;
-        else return false;
+        if (subcategoryRepository.existsById(id)) return false;
+        else return true;
     }
-    public List<Subcategory> getAllSubcategoryByCategoryId(Long id){
+
+    public List<Subcategory> getAllSubcategoryByCategoryId(Long id) {
         return subcategoryRepository.findSubcategoriesByCategoryId(id);
     }
 
-    public int getAllExpensesFromSubcategoryById(Long id){
+    public int getAllExpensesFromSubcategoryById(Long id) {
         Subcategory category = subcategoryRepository.findSubcategoriesWithEntriesById(id);
         List<Entry> entryList = category.getListOfEntry();
         if (entryList.isEmpty()) return 0;

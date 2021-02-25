@@ -1,4 +1,4 @@
-package com.money.demo.service.impl;
+package com.money.demo.service;
 
 import com.money.demo.model.Entry;
 

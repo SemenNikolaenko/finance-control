@@ -3,8 +3,9 @@ package com.money.demo.controller;
 import com.money.demo.model.Entry;
 import com.money.demo.model.Subcategory;
 import com.money.demo.service.SubcategoryService;
-import com.money.demo.service.impl.EntryService;
+import com.money.demo.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class SubcategoryAndEntryController {
     private List<Entry> entryList = new ArrayList<>();
 
     @Autowired
-    public SubcategoryAndEntryController(SubcategoryService subcategoryService, EntryService entryService) {
+    public SubcategoryAndEntryController( SubcategoryService subcategoryService, EntryService entryService) {
         this.subcategoryService = subcategoryService;
         this.entryService = entryService;
     }

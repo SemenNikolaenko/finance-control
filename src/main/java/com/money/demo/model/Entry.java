@@ -29,6 +29,7 @@ public class Entry {
     @JoinColumn(name = "subcategory_id")
     private Subcategory subcategory;
 
+
     @Override
     public String toString() {
         return "Entry created "+ dateOfCreate+" when "+text+" and pay "+amountOfMoney;

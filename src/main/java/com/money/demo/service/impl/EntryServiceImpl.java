@@ -2,6 +2,7 @@ package com.money.demo.service.impl;
 
 import com.money.demo.model.Entry;
 import com.money.demo.repository.EntryRepository;
+import com.money.demo.service.EntryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class EntryServiceImpl implements EntryService{
+public class EntryServiceImpl implements EntryService {
     private final EntryRepository entryRepository;
 
     public EntryServiceImpl(EntryRepository entryRepository) {
