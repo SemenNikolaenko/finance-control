@@ -1,2 +1,2 @@
 # moneyApp
-training application which allow monitor your finance
+training application which allows monitor your finance
